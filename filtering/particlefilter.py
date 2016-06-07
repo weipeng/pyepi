@@ -4,14 +4,14 @@ from common.maths import as_array
 from scipy.stats import norm
 from numpy import mean, cov, zeros, sqrt, tile, std, average
 from numpy.random import choice, normal, multivariate_normal
-from common.linalg import uncentered_cov
+from common.linalg import uncentered_cov, init_weights
 
 
 class ParticleFilter(object):
 
     def __init__(self, num_part, params={}):
         self.num_part = num_part
-        self.weights = as_array(zeros(num_part)) + 1.0 / num_part
+        self.weights = init_weights(num_part)
         
         self.x_prior = None
         

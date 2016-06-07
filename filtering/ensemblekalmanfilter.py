@@ -2,14 +2,14 @@ import sys
 sys.path.append('..')
 from kalmanfilter import KalmanFilter
 from numpy import cov, array
-from common.linalg import uncentered_cov 
+from common.linalg import uncentered_cov, init_weights
 
 class EnsembleKalmanFilter(KalmanFilter):
 
     def __init__(self, num_enbs, num_states, num_obs, A, B, V, W, P=None):
         super(EnsembleKalmanFilter, self).__init__(num_states, num_obs, 
                                                    A, B, V, W, P)
-        self.weights = array([1.0/num_enbs] * num_enbs)
+        self.weights = init_weights(num_enbs)
         self.num_enbs = num_enbs
 
         self.cov_type = None
