@@ -1,7 +1,7 @@
 import sys
 sys.path.append('..')
 from kalmanfilter import KalmanFilter
-from numpy import cov, array
+from numpy import cov
 from common.linalg import uncentered_cov, init_weights
 
 class EnsembleKalmanFilter(KalmanFilter):

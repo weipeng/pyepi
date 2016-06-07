@@ -2,9 +2,9 @@ import sys
 sys.path.append('..')
 from common.maths import as_array
 from scipy.stats import norm
-from numpy import mean, cov, zeros, sqrt, tile, std, average
-from numpy.random import choice, normal, multivariate_normal
-from common.linalg import uncentered_cov, init_weights
+from numpy import cov, tile, std, average
+from numpy.random import choice, multivariate_normal
+from common.linalg import init_weights
 
 
 class ParticleFilter(object):

@@ -1,6 +1,6 @@
 import sys
 sys.path.append('..')
-from numpy import *
+from numpy import zeros, eye, dot
 from common.maths import as_matrix
 
 
@@ -31,7 +31,7 @@ class KalmanFilter(object):
         K = self.K.copy()
         z = obs - self.B.dot(self.x_prior)
         
-        self.cali = dot(self.K * coef, z)
+        self.cali = dot(self.K, z)
         self.x_post = self.x_prior + self.cali
         self.K = K
 
