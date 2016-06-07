@@ -5,8 +5,8 @@ from numpy import inf
 class BaseSIR(object):
     '''The abstract base for the SIR model and its variant models'''
     def __init__(self, params):
-        self.init_i = dtype(params.get('init_i', 0.0))
-        self.set_init_i(self.init_i)
+        init_i = dtype(params.get('init_i', 0.0))
+        self.set_init_i(init_i)
         
         self.epoch = 0
         self.epochs = params.get('epochs', 52)

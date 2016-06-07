@@ -1,5 +1,5 @@
 import sys
-sys.path.append('..')
+sys.path.insert(0, '..')
 from numpy import zeros, eye, dot
 from common.maths import as_matrix
 

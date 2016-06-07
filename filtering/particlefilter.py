@@ -1,5 +1,5 @@
 import sys
-sys.path.append('..')
+sys.path.insert(0, '..')
 from common.maths import as_array
 from scipy.stats import norm
 from numpy import cov, tile, std, average

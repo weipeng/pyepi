@@ -1,5 +1,5 @@
 import sys
-sys.path.append('..')
+sys.path.insert(0, '..')
 from kalmanfilter import KalmanFilter
 from numpy import cov
 from common.linalg import uncentered_cov, init_weights
