@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, '..')
 from numpy import zeros, eye, dot
-from common.maths import as_matrix
+from common.linalg import as_matrix
 
 
 class KalmanFilter(object):
@@ -10,8 +10,8 @@ class KalmanFilter(object):
         self.num_states = num_states
         self.num_obs = num_obs
 
-        self.A = as_matrix(A)
-        self.B = as_matrix(B)
+        self.A = None if A is None else as_matrix(A)
+        self.B = None if B is None else as_matrix(B)
         self.V = as_matrix(V) 
         self.W = as_matrix(W) 
         

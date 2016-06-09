@@ -1,7 +1,8 @@
 import sys
 sys.path.insert(0, '..')
 from sir import SIR
-from common.linalg import as_array, as_matrix, dtype, init_weights
+from common.config import dtype as data_type
+from common.linalg import as_array, as_matrix, init_weights
 from common.stats import RSS, MSPE, RMSE
 from numpy.random import normal, uniform
 from numpy import *

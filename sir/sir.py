@@ -2,7 +2,7 @@ import sys
 sys.path.append('..')
 from basesir import BaseSIR
 from common.stats import RSS, RMSE, MSPE
-from common.maths import as_matrix, data_type
+from common.linalg import as_matrix, dtype as data_type
 from common.utils import get_data
 from numpy import eye, ones, corrcoef
 from filtering.kalmanfilter import KalmanFilter 
