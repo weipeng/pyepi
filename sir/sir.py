@@ -109,7 +109,7 @@ class SIR(BaseSIR):
         Cov = eye(num_states, dtype=data_type) * 0.0001
 
         V = Cov.copy()
-        W = eye(num_obs, dtype=data_type) * 0.00001
+        W = eye(num_obs, dtype=data_type) * 0.0001
         
-        self.filter = KalmanFilter(num_states, num_obs, A, B, V, W, Cov * 100)
+        self.filter = KalmanFilter(num_states, num_obs, A, B, V, W, Cov)
     
