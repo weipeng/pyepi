@@ -1,7 +1,8 @@
 import sys
 sys.path.insert(0, '..')
 from sir import SIR
-from common.maths import as_array, as_matrix, data_type, init_weights
+from common.config import data_type
+from common.linalg import as_array, as_matrix, init_weights
 from common.stats import RSS, MSPE, RMSE
 from numpy.random import normal, uniform
 from numpy import *
@@ -22,7 +23,7 @@ class ParticleSIR(SIR):
         self.alphas = uniform(0., 1, num_enbs)
         self.betas = uniform(0., 1, num_enbs)
 
-        self.weights = init_weights(num_enbs)
+        self.weights = [init_weights(num_enbs)] # matrix-like
 
         for i in xrange(num_enbs):
             if self.alphas[i] < self.betas[i]:
@@ -33,8 +34,6 @@ class ParticleSIR(SIR):
 
     def update_states(self):
         for j in xrange(self.num_enbs):
-            #s = self.check_bounds(self.current_Ss[j])
-            #i = self.check_bounds(self.current_Is[j])
             s = self.current_Ss[j]
             i = self.current_Is[j]
             s += self._delta_s(self.current_Ss[j], self.current_Is[j], 
@@ -107,6 +106,4 @@ class ParticleSIR(SIR):
         self.scores['RMSE'] = RMSE(self.CDC_obs, self.IS[idx])
         self.scores['MSPE'] = MSPE(self.CDC_obs, self.IS[idx])
         self.scores['CORR'] = corrcoef(self.CDC_obs, self.IS[idx])[0, 1]
-        print mean(self.alphas), mean(self.betas)
-        print max(self.alphas), min(self.alphas), max(self.betas), min(self.betas)
         return self.score

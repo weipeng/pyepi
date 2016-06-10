@@ -27,6 +27,6 @@ class Bass(object):
         
         w = tmp_ws / tmp_ws.sum()
 
-        return X_out, w
+        return X_out, w, l_idx.shape[0]
             
             

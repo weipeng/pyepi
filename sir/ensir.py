@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, '..')
 from sir import SIR
-from common.config import dtype as data_type
+from common.config import data_type
 from common.linalg import as_array, as_matrix, init_weights
 from common.stats import RSS, MSPE, RMSE
 from numpy.random import normal, uniform
@@ -23,7 +23,7 @@ class EnsembleSIR(SIR):
         self.alphas = uniform(0., 1, num_enbs)
         self.betas = uniform(0., 1, num_enbs)
 
-        self.weights = init_weights(num_enbs)
+        self.weights = [init_weights(num_enbs)] # matrix-like
 
         for i in xrange(num_enbs):
             if self.alphas[i] < self.betas[i]:
@@ -55,7 +55,7 @@ class EnsembleSIR(SIR):
         num_obs = 1
         
         A = None
-        B = None
+        B = self.construct_B(with_param=True)
 
         V = as_matrix(eye(num_states, dtype=data_type)) * 0.0001
         W = as_matrix(eye(num_obs, dtype=data_type)) * 0.0001
@@ -72,7 +72,7 @@ class EnsembleSIR(SIR):
             F.fit(X)
             y = tile(as_matrix(self.CDC_obs[self.epoch]), 
                      self.num_enbs)
-            F.step(y, predict_P=False, verbose=False)
+            F.step(y, predict_P=False)
             self.weights.append(F.weights)
 
             x_post = F.x_post
@@ -113,6 +113,4 @@ class EnsembleSIR(SIR):
         self.scores['RMSE'] = RMSE(self.CDC_obs, self.IS[idx])
         self.scores['MSPE'] = MSPE(self.CDC_obs, self.IS[idx])
         self.scores['CORR'] = corrcoef(self.CDC_obs, self.IS[idx])[0, 1]
-        print mean(self.alphas), mean(self.betas)
-        print max(self.alphas), min(self.alphas), max(self.betas), min(self.betas)
         return self.score

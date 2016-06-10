@@ -2,15 +2,15 @@ import sys
 sys.path.append('..')
 from basesir import BaseSIR
 from common.stats import RSS, RMSE, MSPE
-from common.linalg import as_matrix, dtype as data_type
+from common.config import data_type
+from common.linalg import as_matrix
 from common.utils import get_data
 from numpy import eye, ones, corrcoef
 from filtering.kalmanfilter import KalmanFilter 
 
 
 class SIR(BaseSIR):
-    '''The linear SIR model
-    '''
+    '''The SIR model'''
     def __init__(self, params):
         super(SIR, self).__init__(params)
         self.CDC_obs = get_data(self.CDC)
@@ -74,7 +74,7 @@ class SIR(BaseSIR):
             x = as_matrix([self.s, self.i]).T
             F.fit(x)
             y = as_matrix([self.CDC_obs[self.epoch]]).T
-            F.step(y, verbose=False)
+            F.step(y)
 
             self.s = self.check_bounds(F.x_post[0, 0])
             self.i = self.check_bounds(F.x_post[1, 0])
@@ -113,3 +113,6 @@ class SIR(BaseSIR):
         
         self.filter = KalmanFilter(num_states, num_obs, A, B, V, W, Cov)
     
+    def construct_B(self, with_param=False):
+        B = as_matrix([0, 1, 0, 0]) if with_param else as_matrx([0, 1])
+        return B

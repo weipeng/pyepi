@@ -1,11 +1,11 @@
-from common.config import dtype
+from common.config import data_type
 from numpy import inf
 
 
 class BaseSIR(object):
     '''The abstract base for the SIR model and its variant models'''
     def __init__(self, params):
-        init_i = dtype(params.get('init_i', 0.0))
+        init_i = float(params.get('init_i', 0.0))
         self.set_init_i(init_i)
         
         self.epoch = 0
@@ -24,7 +24,7 @@ class BaseSIR(object):
         pass
 
     def set_init_i(self, i, s=inf):
-        self.i = dtype(i)
-        self.s = 1 - i if dtype(s) is inf else i 
+        self.i = float(i)
+        self.s = 1 - i if float(s) is inf else i 
         self.Is = [self.i]
         self.Ss = [self.s]

@@ -1,10 +1,10 @@
 from numpy import matrix, array, zeros 
-from config import dtype
+from config import data_type
 
-def as_matrix(x, data_type=dtype):
+def as_matrix(x, data_type=data_type):
     return matrix(x, data_type)
 
-def as_array(x, data_type=dtype):
+def as_array(x, data_type=data_type):
     return array(x, data_type)
 
 def uncentered_cov(X):
