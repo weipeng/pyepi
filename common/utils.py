@@ -22,7 +22,7 @@ def read_params(file_path):
             elif data_type in ['float', 'double']:
                 data = float(data)
             elif data_type == 'boolean':
-                data == True if data == 'true' else False
+                data = True if data == 'true' else False
             elif data_type == 'list of string':
                 data = data.split(',')
             elif data_type == 'list of int': 
