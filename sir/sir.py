@@ -91,7 +91,7 @@ class SIR(BaseSIR):
         return self.alpha * self.s * self.i - self.beta * self.i
 
     def get_score(self):
-        self.outcome = [x for i, x in enumerate(self.Is)]
+        self.outcome = [x for _, x in enumerate(self.Is)]
         self.scores = {}
         self.scores['SSE'] = RSS(self.outcome, self.CDC_obs, 1)
         self.scores['RMSE'] = RMSE(self.CDC_obs, self.outcome, 1)
