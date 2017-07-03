@@ -21,10 +21,10 @@ class SIR(BaseSIR):
             assert 'beta' in params, 'The paramter beta is missing.'
             self.beta = float(params['beta'])
 
-            assert'alpha' in params, 'The paramter alpha is missing.'
+            assert 'alpha' in params, 'The paramter alpha is missing.'
             self.alpha = float(params['alpha'])
 
-            assert'CDC' in params, 'The paramter CDC is missing.'
+            assert 'CDC' in params, 'The paramter CDC is missing.'
             self.CDC = params['CDC']
 
             self.filter = None
