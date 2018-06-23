@@ -1,5 +1,3 @@
-import sys
-sys.path.insert(0, '..')
 from numpy import zeros, eye, dot
 from common.linalg import as_matrix
 

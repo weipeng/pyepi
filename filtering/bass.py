@@ -1,5 +1,3 @@
-import sys
-sys.path.insert(0, '..')
 from common.linalg import as_array, as_matrix
 from numpy import std, where, zeros
 from numpy.random import choice, multivariate_normal

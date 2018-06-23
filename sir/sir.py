@@ -1,6 +1,4 @@
-import sys
-sys.path.append('..')
-from basesir import BaseSIR
+from .basesir import BaseSIR
 from common.stats import RSS, RMSE, MSPE
 from common.config import data_type
 from common.linalg import as_matrix

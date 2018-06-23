@@ -1,9 +1,6 @@
 from numpy import sum, power, ones, mean, sqrt
-try:
-    from scipy import stats
-except:
-    print 'No scipy'
-from linalg import as_array
+from scipy import stats
+from .linalg import as_array
 
 def RSS(x, y, idx=0):
     return ((as_array(x)[idx:] - as_array(y)[idx:]) ** 2).sum()

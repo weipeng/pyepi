@@ -1,6 +1,4 @@
-import sys
-sys.path.insert(0, '..')
-from sir import SIR
+from .sir import SIR
 from common.config import data_type
 from common.linalg import as_array, as_matrix, init_weights
 from common.stats import RSS, MSPE, RMSE
@@ -25,7 +23,7 @@ class ParticleSIR(SIR):
 
         self.weights = [init_weights(num_enbs)] # matrix-like
 
-        for i in xrange(num_enbs):
+        for i in range(num_enbs):
             if self.alphas[i] < self.betas[i]:
                 self.alphas[i], self.betas[i] = self.betas[i], self.alphas[i]  
 
@@ -33,7 +31,7 @@ class ParticleSIR(SIR):
         self.Ss = [self.current_Ss.tolist()]
 
     def update_states(self):
-        for j in xrange(self.num_enbs):
+        for j in range(self.num_enbs):
             s = self.current_Ss[j]
             i = self.current_Is[j]
             s += self._delta_s(self.current_Ss[j], self.current_Is[j], 
@@ -69,7 +67,7 @@ class ParticleSIR(SIR):
             self.weights.append(F.weights)
 
             x_post = F.x_post
-            for j in xrange(self.num_enbs):
+            for j in range(self.num_enbs):
                 self.current_Ss[j] = self.check_bounds(x_post[0, j])
                 self.current_Is[j] = self.check_bounds(x_post[1, j])
                 self.alphas[j] = self.check_bounds(x_post[2, j], inf)
@@ -98,7 +96,7 @@ class ParticleSIR(SIR):
         self.IS = sum(I_mat, axis=1)
 
         time_gap = self.epochs / 52
-        idx = [x for x in xrange(self.epochs) if not x % time_gap]
+        idx = [x for x in range(self.epochs) if not x % time_gap]
 
         self.score = RSS(self.CDC_obs, self.IS[idx])
         self.scores = {}

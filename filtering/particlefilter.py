@@ -1,5 +1,3 @@
-import sys
-sys.path.insert(0, '..')
 from scipy.stats import norm
 from numpy import cov, tile, std, average
 from numpy.random import choice, multivariate_normal

@@ -1,4 +1,4 @@
-from linalg import as_array
+from .linalg import as_array
 
 def get_data(filename, delimiter=','):
     with open(filename) as f:
@@ -28,7 +28,7 @@ def read_params(file_path):
             elif data_type == 'list of int': 
                 data = map(int, data.split(','))
             else:
-                print 'This line is ignored'
+                print('This line is ignored')
 
             params[key] = data
     

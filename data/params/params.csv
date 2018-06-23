@@ -1,4 +1,4 @@
 alpha	0.403257635	double
 beta	0.333307443847	double
 init_i	0.0115239857	double
-CDC	/Users/whuang/workspace/machine_learning/pyepi/data/CDC/ILINet 2012-2013_unweighted.csv	string
+CDC	./data/CDC/ILINet 2012-2013_unweighted.csv	string

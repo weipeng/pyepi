@@ -1,5 +1,5 @@
 from numpy import matrix, array, zeros 
-from config import data_type
+from .config import data_type
 
 def as_matrix(x, data_type=data_type):
     return matrix(x, data_type)
