@@ -7,8 +7,8 @@ Unfortunately, the main purpose of the code was only for running simulations, an
 ## Running the simulations
 The code now is updated to be runable in Python3. 
 
-To run the simulation, one has to make sure the following packages are installed.
-Use the following command under the directory *pyepi*:
+To run the simulation, one has to make sure the following packages are installed
+Thereafter, for starting the simulations, use the following command under the directory *pyepi*:
 ``` 
 python3 -m simulations.sim 
 ```
