@@ -10,6 +10,11 @@ class Bass(object):
     def step(X, X_out, w, y, err, R, index=1):
         s_std = std(X[index].A1)  
         tmp_ws = as_array([norm.pdf(y, x[0, index], s_std) for x in X.T])
+        # It is strange that the numerical instability was never found in
+        # the python 2.7 version. 
+        # The following two lines are just an ad-hoc solution
+        if (tmp_ws == 0).all(): 
+            tmp_ws = 1 / tmp_ws.shape[0]
         tmp_ws *= w 
         tmp_ws /= tmp_ws.sum()
 
@@ -22,8 +27,9 @@ class Bass(object):
             idx = choice(s_idx, l_idx.shape[0], p=s_ws)
             X_out[:, l_idx] = X_out[:, idx] + as_matrix(noise).T
             tmp_ws[l_idx] = tmp_ws[idx]
-        
-        w = tmp_ws / tmp_ws.sum()
+            w[:] = tmp_ws / tmp_ws.sum()
+        else:
+            w[:] = tmp_ws[:]
 
         return X_out, w, l_idx.shape[0]
             
