@@ -108,12 +108,16 @@ if __name__ == '__main__':
                 try:
                     sim_ensir_filtered(ens, year, 'c', params)
                     sim_ensir_filtered(ens, year, 'u', params)
+                except (KeyboardInterrupt, SystemExit):
+                    raise
                 except:
                     print_exc() 
         for ens in range(500, 501, 50):
             for i in range(50):
                 try:
                     sim_psir_filtered(ens, year, params)
+                except (KeyboardInterrupt, SystemExit):
+                    raise
                 except:
                     print_exc()
         for ens in range(500, 501, 50):
@@ -121,6 +125,8 @@ if __name__ == '__main__':
                 try:
                     sim_easir_filtered(ens, year, 'c', params)
                     sim_easir_filtered(ens, year, 'u', params)
+                except (KeyboardInterrupt, SystemExit):
+                    raise
                 except:
                     print_exc()
         for ens in range(500, 501, 50):
@@ -128,6 +134,8 @@ if __name__ == '__main__':
                 try:
                     sim_basssir_filtered(ens, year, 'c', params)
                     sim_basssir_filtered(ens, year, 'u', params)
+                except (KeyboardInterrupt, SystemExit):
+                    raise
                 except:
                     print_exc()
 

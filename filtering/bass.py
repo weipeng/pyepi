@@ -16,8 +16,8 @@ class Bass(object):
         s_idx = where(tmp_ws >= err)[0]
         l_idx = where(tmp_ws < err)[0]
 
-        s_ws = tmp_ws[s_idx] / tmp_ws[s_idx].sum()
         if l_idx.shape[0] > 0:
+            s_ws = tmp_ws[s_idx] / tmp_ws[s_idx].sum()
             noise = multivariate_normal(zeros(X.shape[0]), R, l_idx.shape[0])
             idx = choice(s_idx, l_idx.shape[0], p=s_ws)
             X_out[:, l_idx] = X_out[:, idx] + as_matrix(noise).T
