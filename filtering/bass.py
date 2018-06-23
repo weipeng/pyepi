@@ -16,6 +16,7 @@ class Bass(object):
         if (tmp_ws == 0).all(): 
             tmp_ws = w
         else:
+            tmp_ws *= w 
             tmp_ws /= tmp_ws.sum()
 
         s_idx = where(tmp_ws >= err)[0]
