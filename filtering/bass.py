@@ -14,9 +14,9 @@ class Bass(object):
         # the python 2.7 version. 
         # The following two lines are just an ad-hoc solution
         if (tmp_ws == 0).all(): 
-            tmp_ws = 1 / tmp_ws.shape[0]
-        tmp_ws *= w 
-        tmp_ws /= tmp_ws.sum()
+            tmp_ws = w
+        else:
+            tmp_ws /= tmp_ws.sum()
 
         s_idx = where(tmp_ws >= err)[0]
         l_idx = where(tmp_ws < err)[0]
