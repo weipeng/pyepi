@@ -27,18 +27,18 @@ class KalmanFilter(object):
         self.H = self.get_H()
         self.K = self.get_K()
         K = self.K.copy()
-        z = obs - self.B.dot(self.x_prior)
+        z = obs - self.B @ self.x_prior
         
-        self.cali = dot(self.K, z)
+        self.cali = self.K @ z
         self.x_post = self.x_prior + self.cali
         self.K = K
 
         if predict_P:
-            self.P_post = dot(self.I - dot(self.K, self.B), self.P_prior)
-            self.P_prior = dot(self.A, dot(self.P_post, self.A.T)) + self.V
+            self.P_post = (self.I - self.K @ self.B) @ self.P_prior
+            self.P_prior = self.A @ (self.P_post @ self.A.T) + self.V
 
         if predict_x:
-            self.x_prior = dot(self.A, self.x_post)
+            self.x_prior = self.A @ self.x_post
 
 
     def fit(self, x, P=None):
@@ -50,7 +50,7 @@ class KalmanFilter(object):
             self.P_post = P
 
     def get_H(self):
-        return (dot(self.B, dot(self.P_prior, self.B.T)) + self.W).I
+        return (self.B @ (self.P_prior @ self.B.T) + self.W).I
 
     def get_K(self):
-        return dot(dot(self.P_prior, self.B.T), self.H)
+        return self.P_prior @ self.B.T @ self.H
